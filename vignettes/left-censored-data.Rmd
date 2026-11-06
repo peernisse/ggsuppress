@@ -1,0 +1,106 @@
+---
+title: "Plotting Left-Censored Data"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Plotting Left-Censored Data}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.width = 7,
+  fig.height = 5
+)
+
+```
+
+## Introduction to Left-Censored Data
+
+In environmental and laboratory data, analytical results are frequently "left-censored." This occurs when a target compound is not detected above the laboratory's Method Detection Limit (MDL). These non-detects (often reported as "ND" or flagged with a "U" qualifier) pose a visualization challenge.
+
+A common standard is to plot non-detects at the MDL or at a fraction of the MDL (e.g., 1/2 MDL) using a distinct symbology.
+
+The `{ggsuppress}` package can handle this row-by-row dynamically. Let's look at the built-in `groundwater` dataset to see how.
+
+```{r}
+library(ggsuppress)
+library(ggplot2)
+
+# View the structure of the data
+head(groundwater[10:20,])
+```
+
+## Data Preparation Requirements
+ 
+Notice that our groundwater dataset contains a character `Result` column (which includes "ND" strings) and a `Numeric_Result` column.
+
+**Important:** `{ggsuppress}` requires a numeric y aesthetic. It is the user's responsibility to coerce character results into numeric columns prior to plotting. In our Numeric_Result column, "ND" strings have been converted to NA.
+
+## Plotting Non-Detects Dynamically
+
+To plot these non-detects at 1/2 their specific MDL, we map the MDL column to the `threshold` and `proxy` aesthetics directly inside the `geom_point_suppressed()` function.
+
+We also must set `suppress_na = TRUE` so the engine knows to catch those NA values and apply the proxy math to them.
+
+```{r}
+ggplot(groundwater, aes(x = Sample_Date, y = Numeric_Result, color = Parameter)) +
+  
+  geom_point_suppressed(
+    # Dynamically apply the MDL for each specific row
+    aes(threshold = MDL, proxy = MDL / 2), 
+    suppress_na = TRUE, 
+    size = 3, 
+    stroke = 1.2
+  ) +
+  # Adjust legend labels for detection status
+  scale_shape_suppress(
+    name = 'Detection Status',
+    labels = c(`FALSE` = "Detected", `TRUE` = "Non-detect (1/2 MDL)")
+  ) +
+  theme_minimal() +
+  labs(
+    title = "Groundwater Monitoring Results",
+    subtitle = "Non-detects plotted at 1/2 MDL",
+    x = "Date",
+    y = "Concentration (mg/L)"
+  )
+```
+
+## Handling Multiple Parameters
+
+Because different chemicals have vastly different scales and MDLs, it is usually best practice to facet this data. Notice how `{ggsuppress}` handles the dynamic MDLs across the different facets, and safely ignores rows where a valid detect was measured but the MDL column was left blank (NA).
+
+```{r}
+ggplot(groundwater, aes(x = Sample_Date, y = Numeric_Result, color = Parameter)) +
+  
+  geom_point_suppressed(
+    aes(threshold = MDL, proxy = MDL / 2), 
+    suppress_na = TRUE, 
+    size = 3, 
+    stroke = 1.2
+  ) +
+  
+  # Standard scale styling
+  scale_color_manual(
+    values = c("Arsenic" = "navy", "Cadmium" = "darkorange", "Lead" = "forestgreen")
+  ) +
+  # Adjust legend labels for detection status
+  scale_shape_suppress(
+    name = 'Detection Status',
+    labels = c(`FALSE` = "Detected", `TRUE` = "Non-detect (1/2 MDL)")
+  )  +
+  
+  # Facet by parameter, allowing the y-axis scales to adjust freely
+  facet_wrap(~Parameter, scales = "free_y", ncol = 1) +
+  
+  theme_bw() +
+  theme(legend.position = "bottom") +
+  labs(
+    title = "Groundwater Monitoring by Parameter",
+    x = "Sample Date",
+    y = "Concentration (mg/L)"
+  )
+```
