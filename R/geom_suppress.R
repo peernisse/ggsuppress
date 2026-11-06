@@ -10,6 +10,9 @@
 #' @param position Position adjustment.
 #' @param threshold Numeric. Values below this threshold will be suppressed. Defaults to 11.
 #' @param proxy_value Numeric. The y-value where suppressed data will be plotted. Defaults to 0.
+#' @param suppress_na Logical. When mapping `threshold` and `proxy` through `aes()` 
+#' this allows NA values to `y` to pass through and be substituted with the value 
+#' in `proxy`. This subverts `ggplot()` default removal of records containing NA.
 #' @param na.rm If FALSE, the default, missing values are removed with a warning. 
 #' If TRUE, missing values are silently removed.
 #' @param show.legend logical. Should this layer be included in the legends? 
@@ -28,9 +31,8 @@
 #' @rdname geom_suppress
 #' @export
 geom_point_suppressed <- function(mapping = NULL, data = NULL, position = "identity",
-                                  ..., threshold = 11, proxy_value = 0,
+                                  ..., threshold = 11, proxy_value = 0, suppress_na = FALSE,
                                   na.rm = FALSE, show.legend = NA, inherit.aes = TRUE) {
-  
   # Change: Map the suppression status to the SHAPE aesthetic instead of fill
   base_mapping <- aes(shape = after_stat(is_suppressed))
   
@@ -48,14 +50,14 @@ geom_point_suppressed <- function(mapping = NULL, data = NULL, position = "ident
     position = position,
     show.legend = show.legend,
     inherit.aes = inherit.aes,
-    params = list(threshold = threshold, proxy_value = proxy_value, na.rm = na.rm, ...)
+    params = list(threshold = threshold, proxy_value = proxy_value, suppress_na = suppress_na, na.rm = na.rm, ...)
   )
 }
 
 #' @rdname geom_suppress
 #' @export
 geom_col_suppressed <- function(mapping = NULL, data = NULL, position = "stack",
-                                ..., threshold = 11, proxy_value = 0,
+                                ..., threshold = 11, proxy_value = 0, suppress_na = FALSE,
                                 na.rm = FALSE, show.legend = NA, inherit.aes = TRUE) {
   
   # Map the suppression status to the alpha (transparency) aesthetic for bars
@@ -72,14 +74,14 @@ geom_col_suppressed <- function(mapping = NULL, data = NULL, position = "stack",
     position = position,
     show.legend = show.legend,
     inherit.aes = inherit.aes,
-    params = list(threshold = threshold, proxy_value = proxy_value, na.rm = na.rm, ...)
+    params = list(threshold = threshold, proxy_value = proxy_value, suppress_na = suppress_na, na.rm = na.rm, ...)
   )
 }
 
 #' @rdname geom_suppress
 #' @export
 geom_line_suppressed <- function(mapping = NULL, data = NULL, position = "identity",
-                                 ..., threshold = 11, proxy_value = 0,
+                                 ..., threshold = 11, proxy_value = 0, suppress_na = FALSE,
                                  na.rm = FALSE, show.legend = NA, inherit.aes = TRUE) {
   
   # Change: Remove group = 1. We leave base_mapping empty so ggplot groups 
@@ -97,6 +99,6 @@ geom_line_suppressed <- function(mapping = NULL, data = NULL, position = "identi
     position = position,
     show.legend = show.legend,
     inherit.aes = inherit.aes,
-    params = list(threshold = threshold, proxy_value = proxy_value, na.rm = na.rm, ...)
+    params = list(threshold = threshold, proxy_value = proxy_value, suppress_na = suppress_na, na.rm = na.rm, ...)
   )
 }

@@ -65,12 +65,48 @@ test_that("geom_suppress functions handle NA values without crashing", {
   
   # Assertions
   # 1. Verify that ggplot2 automatically removed the NA row, leaving 2 rows
-  expect_equal(nrow(plot_data), 2)
+  expect_equal(nrow(plot_data), 3)
   
   # 2. Check that the remaining values were flagged correctly 
   # (5 is TRUE for suppression, 15 is FALSE)
-  expect_equal(plot_data$is_suppressed, c(TRUE, FALSE))
+  expect_equal(plot_data$is_suppressed, c(TRUE, FALSE, FALSE))
   
   # 3. Check that the 5 became 0, and the 15 remained 15
-  expect_equal(plot_data$y, c(0, 15))
+  expect_equal(plot_data$y, c(0, NA, 15))
 })
+
+# Test 4: Dynamic threshold and proxy mapping for left-censored lab data
+test_that("geom_suppress handles dynamic threshold and proxy aesthetics with NAs", {
+  
+  # Create mock lab data
+  # Row 1: Valid result, valid MDL (Should plot as 0.005)
+  # Row 2: NA result, valid MDL (Should be suppressed and plot at MDL/2 = 0.001)
+  # Row 3: Valid result, NA MDL (Should plot as 0.008, no warning)
+  df <- data.frame(
+    x = c("A", "B", "C"),
+    y = c(0.005, NA, 0.008),
+    mdl = c(0.002, 0.002, NA)
+  )
+  
+  # Build plot with dynamic aesthetics and suppress_na = TRUE
+  p <- ggplot(df, aes(x = x, y = y)) +
+    geom_point_suppressed(
+      aes(threshold = mdl, proxy = mdl / 2), 
+      suppress_na = TRUE
+    )
+  
+  # Extract computed data
+  plot_data <- layer_data(p)
+  
+  # Assertions
+  # 1. Verify all 3 rows survived (ggplot2 didn't drop the NAs)
+  expect_equal(nrow(plot_data), 3)
+  
+  # 2. Check that only the NA in row 2 was flagged as suppressed
+  expect_equal(plot_data$is_suppressed, c(FALSE, TRUE, FALSE))
+  
+  # 3. Check that the NA in row 2 was replaced by 1/2 the MDL (0.001)
+  expect_equal(plot_data$y, c(0.005, 0.001, 0.008))
+})
+
+
