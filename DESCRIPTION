@@ -1,0 +1,20 @@
+Package: ggsuppress
+Title: Add Data Censoring to ggplot2 Plots
+Version: 0.0.0.9000
+Authors@R: 
+    person("Peter", "EerNisse", , "peernisse@gmail.com", role = c("aut", "cre"),
+           comment = c(ORCID = "YOUR-ORCID-ID"))
+Description: ggplot2 extensions for stat and geom to plot censored values. 
+  Use in context of public health small-number suppression or for left-censored laboratory data.
+License: MIT + file LICENSE
+Encoding: UTF-8
+name: ggsuppress
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.3
+Depends: 
+    R (>= 3.5)
+LazyData: true
+Imports: ggplot2, dplyr
+Suggests: 
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3

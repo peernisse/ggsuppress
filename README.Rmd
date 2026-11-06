@@ -1,0 +1,66 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# ggsuppress
+
+<!-- badges: start -->
+[![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
+<!-- badges: end -->
+
+The goal of `{ggsuppress}` is to provide a seamless way to apply small-number suppression to public health data visualizations in ggplot2. Values below a specified threshold (default < 11) are automatically plotted at a proxy value and given distinct symbology.
+
+## Installation
+
+You can install the development version of ggsuppress like so:
+
+``` r
+# Depending on your hosting solution, instructions will go here.
+# Example for GitHub:
+# devtools::install_github("peernisse/ggsuppress")
+```
+
+## Example
+
+This is a basic example which shows you how to solve a common problem:
+
+```{r example}
+library(ggsuppress)
+library(ggplot2)
+
+# Using the built-in overdoses dataset
+ggplot(overdoses, aes(x = month_date, y = count, color = county)) +
+  geom_line_suppressed(linewidth = 1) +
+  geom_point_suppressed(size = 3, stroke = 1.2) +
+  scale_color_manual(values = c("Salt Lake" = "navy", "Utah" = "darkorange")) +
+  scale_shape_suppress() +
+  theme_minimal() +
+  labs(title = "Monthly Overdoses by County", x = "Date", y = "Count")
+```
+
+What is special about using `README.Rmd` instead of just `README.md`? You can include R chunks like so:
+
+```{r cars}
+summary(cars)
+```
+
+You'll still need to render `README.Rmd` regularly, to keep `README.md` up-to-date. `devtools::build_readme()` is handy for this.
+
+You can also embed plots, for example:
+
+```{r pressure, echo = FALSE}
+plot(pressure)
+```
+
+In that case, don't forget to commit and push the resulting figure files, so they display on GitHub and CRAN.
