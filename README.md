@@ -5,6 +5,9 @@
 
 <!-- badges: start -->
 
+[![Lifecycle:
+experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
+[![R-CMD-check](https://github.com/peernisse/ggsuppress/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/peernisse/ggsuppress/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 The goal of `{ggsuppress}` is to provide a seamless way to apply
@@ -28,7 +31,7 @@ This is a basic example which shows you how to solve a common problem:
 
 ``` r
 library(ggsuppress)
-library(ggplot2) 
+library(ggplot2)
 
 # Using the built-in overdoses dataset
 ggplot(overdoses, aes(x = month_date, y = count, color = county)) +

@@ -14,6 +14,7 @@ geom_point_suppressed(
   ...,
   threshold = 11,
   proxy_value = 0,
+  suppress_na = FALSE,
   na.rm = FALSE,
   show.legend = NA,
   inherit.aes = TRUE
@@ -26,6 +27,7 @@ geom_col_suppressed(
   ...,
   threshold = 11,
   proxy_value = 0,
+  suppress_na = FALSE,
   na.rm = FALSE,
   show.legend = NA,
   inherit.aes = TRUE
@@ -38,6 +40,7 @@ geom_line_suppressed(
   ...,
   threshold = 11,
   proxy_value = 0,
+  suppress_na = FALSE,
   na.rm = FALSE,
   show.legend = NA,
   inherit.aes = TRUE
@@ -55,6 +58,10 @@ geom_line_suppressed(
 \item{threshold}{Numeric. Values below this threshold will be suppressed. Defaults to 11.}
 
 \item{proxy_value}{Numeric. The y-value where suppressed data will be plotted. Defaults to 0.}
+
+\item{suppress_na}{Logical. When mapping \code{threshold} and \code{proxy} through \code{aes()}
+this allows NA values to \code{y} to pass through and be substituted with the value
+in \code{proxy}. This subverts \code{ggplot()} default removal of records containing NA.}
 
 \item{na.rm}{If FALSE, the default, missing values are removed with a warning.
 If TRUE, missing values are silently removed.}

@@ -16,6 +16,9 @@ Depends:
 LazyData: true
 Imports: ggplot2, dplyr
 Suggests: 
+    knitr,
+    rmarkdown,
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
 URL: https://peernisse.github.io/ggsuppress/
+VignetteBuilder: knitr
