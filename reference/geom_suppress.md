@@ -15,6 +15,7 @@ geom_point_suppressed(
   ...,
   threshold = 11,
   proxy_value = 0,
+  suppress_na = FALSE,
   na.rm = FALSE,
   show.legend = NA,
   inherit.aes = TRUE
@@ -27,6 +28,7 @@ geom_col_suppressed(
   ...,
   threshold = 11,
   proxy_value = 0,
+  suppress_na = FALSE,
   na.rm = FALSE,
   show.legend = NA,
   inherit.aes = TRUE
@@ -39,6 +41,7 @@ geom_line_suppressed(
   ...,
   threshold = 11,
   proxy_value = 0,
+  suppress_na = FALSE,
   na.rm = FALSE,
   show.legend = NA,
   inherit.aes = TRUE
@@ -74,6 +77,15 @@ geom_line_suppressed(
 
   Numeric. The y-value where suppressed data will be plotted. Defaults
   to 0.
+
+- suppress_na:
+
+  Logical. When mapping `threshold` and `proxy` through
+  [`aes()`](https://ggplot2.tidyverse.org/reference/aes.html) this
+  allows NA values to `y` to pass through and be substituted with the
+  value in `proxy`. This subverts
+  [`ggplot()`](https://ggplot2.tidyverse.org/reference/ggplot.html)
+  default removal of records containing NA.
 
 - na.rm:
 

@@ -27,4 +27,4 @@ A data frame with 40 rows and 3 variables:
 
 ## Source
 
-Utah DHHS Population Health Division Informatics program
+Hypothetical demonstration data set.

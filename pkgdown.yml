@@ -1,8 +1,10 @@
 pandoc: 3.8.3
 pkgdown: 2.2.1
 pkgdown_sha: ~
-articles: {}
-last_built: 2026-11-06T16:33Z
+articles:
+  left-censored-data: left-censored-data.html
+  small-number-suppression: small-number-suppression.html
+last_built: 2026-11-06T23:21Z
 urls:
   reference: https://peernisse.github.io/ggsuppress/reference
   article: https://peernisse.github.io/ggsuppress/articles

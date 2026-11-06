@@ -24,7 +24,7 @@ This is a basic example which shows you how to solve a common problem:
 ``` r
 
 library(ggsuppress)
-library(ggplot2) 
+library(ggplot2)
 
 # Using the built-in overdoses dataset
 ggplot(overdoses, aes(x = month_date, y = count, color = county)) +

@@ -24,7 +24,7 @@ This is a basic example which shows you how to solve a common problem:
 ``` r
 
 library(ggsuppress)
-library(ggplot2) 
+library(ggplot2)
 
 # Using the built-in overdoses dataset
 ggplot(overdoses, aes(x = month_date, y = count, color = county)) +
@@ -71,6 +71,8 @@ files, so they display on GitHub and CRAN.
   [`geom_col_suppressed()`](https://peernisse.github.io/ggsuppress/reference/geom_suppress.md)
   [`geom_line_suppressed()`](https://peernisse.github.io/ggsuppress/reference/geom_suppress.md)
   : Geometries for Small-Number Suppression
+- [`groundwater`](https://peernisse.github.io/ggsuppress/reference/groundwater.md)
+  : Mock Groundwater Monitoring Dataset
 - [`overdoses`](https://peernisse.github.io/ggsuppress/reference/overdoses.md)
   : Monthly Overdoses in Utah and Salt Lake Counties
 - [`scale_shape_suppress()`](https://peernisse.github.io/ggsuppress/reference/scale_suppress.md)
@@ -78,3 +80,11 @@ files, so they display on GitHub and CRAN.
   [`scale_color_suppress()`](https://peernisse.github.io/ggsuppress/reference/scale_suppress.md)
   : Custom scales for small-number suppression
 
+# Articles
+
+### All vignettes
+
+- [Plotting Left-Censored
+  Data](https://peernisse.github.io/ggsuppress/articles/left-censored-data.md):
+- [Small Number
+  Suppression](https://peernisse.github.io/ggsuppress/articles/small-number-suppression.md):
