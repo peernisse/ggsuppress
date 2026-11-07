@@ -7,7 +7,8 @@
 
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
-[![R-CMD-check](https://github.com/peernisse/ggsuppress/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/peernisse/ggsuppress/actions/workflows/R-CMD-check.yaml)
+[![Pkg
+Version](https://img.shields.io/badge/Pkg%20Version-0.0.1.0-blue.svg)](https://github.com/peernisse/ggsuppress/)
 <!-- badges: end -->
 
 The goal of `{ggsuppress}` is to provide a seamless way to apply
@@ -20,14 +21,14 @@ automatically plotted at a proxy value and given distinct symbology.
 You can install the development version of ggsuppress like so:
 
 ``` r
-# Depending on your hosting solution, instructions will go here.
-# Example for GitHub:
 # devtools::install_github("peernisse/ggsuppress")
 ```
 
-## Example
+## Example Small Number Suppression
 
-This is a basic example which shows you how to solve a common problem:
+The geom\_\*\_suppressed() functions automatically plot values below a
+threshold at a proxy value. This example uses defaults `threshold` of 11
+and `proxy_value` of 0.
 
 ``` r
 library(ggsuppress)
@@ -43,28 +44,27 @@ ggplot(overdoses, aes(x = month_date, y = count, color = county)) +
   labs(title = "Monthly Overdoses by County", x = "Date", y = "Count")
 ```
 
-<img src="man/figures/README-example-1.png" width="100%" />
+<img src="man/figures/README-example_suppression-1.png" width="100%" />
 
-What is special about using `README.Rmd` instead of just `README.md`?
-You can include R chunks like so:
+## Example Left-Censored Data Plotting
+
+The `threshold` and `proxy` aesthetics can be used to dynamically apply
+substitution for laboratory “non-detect” results from a column in the
+dataframe. In this example, column `Numeric_Results` has non-detect
+results as `NA`. These are substituted based on values in `MDL`.
 
 ``` r
-summary(cars)
-#>      speed           dist       
-#>  Min.   : 4.0   Min.   :  2.00  
-#>  1st Qu.:12.0   1st Qu.: 26.00  
-#>  Median :15.0   Median : 36.00  
-#>  Mean   :15.4   Mean   : 42.98  
-#>  3rd Qu.:19.0   3rd Qu.: 56.00  
-#>  Max.   :25.0   Max.   :120.00
+library(ggsuppress)
+library(ggplot2)
+
+# Using the built-in groundwater dataset
+ggplot(groundwater, aes(x = Sample_Date, y = Numeric_Result, color = Parameter)) +
+  geom_line_suppressed(aes(threshold = MDL, proxy = MDL/2), suppress_na = TRUE) +
+  geom_point_suppressed(aes(threshold = MDL, proxy = MDL/2), suppress_na = TRUE, size = 3, fill = '#fff') +
+  scale_shape_suppress(values = c(19, 21), labels = c('Detected', 'Non-detect (1/2MDL)')) +
+  scale_color_manual(values = c('navy', 'skyblue', '#ed7000')) +
+  theme_minimal() +
+  labs(title = "Groundwater Results through Time", x = "Date", y = "Concentration (mg/L)")
 ```
 
-You’ll still need to render `README.Rmd` regularly, to keep `README.md`
-up-to-date. `devtools::build_readme()` is handy for this.
-
-You can also embed plots, for example:
-
-<img src="man/figures/README-pressure-1.png" width="100%" />
-
-In that case, don’t forget to commit and push the resulting figure
-files, so they display on GitHub and CRAN.
+<img src="man/figures/README-example_non_detect-1.png" width="100%" />

@@ -17,7 +17,7 @@ knitr::opts_chunk$set(
 
 <!-- badges: start -->
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
-[![R-CMD-check](https://github.com/peernisse/ggsuppress/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/peernisse/ggsuppress/actions/workflows/R-CMD-check.yaml)
+[![Pkg Version](https://img.shields.io/badge/Pkg%20Version-0.0.1.0-blue.svg)](https://github.com/peernisse/ggsuppress/)
 <!-- badges: end -->
 
 The goal of `{ggsuppress}` is to provide a seamless way to apply small-number suppression to public health data visualizations in ggplot2. Values below a specified threshold (default < 11) are automatically plotted at a proxy value and given distinct symbology.
@@ -26,17 +26,15 @@ The goal of `{ggsuppress}` is to provide a seamless way to apply small-number su
 
 You can install the development version of ggsuppress like so:
 
-``` r
-# Depending on your hosting solution, instructions will go here.
-# Example for GitHub:
+```{r}
 # devtools::install_github("peernisse/ggsuppress")
 ```
 
-## Example
+## Example Small Number Suppression
 
-This is a basic example which shows you how to solve a common problem:
+The geom_*_suppressed() functions automatically plot values below a threshold at a proxy value. This example uses defaults `threshold` of 11 and `proxy_value` of 0.
 
-```{r example}
+```{r example_suppression}
 library(ggsuppress)
 library(ggplot2)
 
@@ -50,18 +48,27 @@ ggplot(overdoses, aes(x = month_date, y = count, color = county)) +
   labs(title = "Monthly Overdoses by County", x = "Date", y = "Count")
 ```
 
-What is special about using `README.Rmd` instead of just `README.md`? You can include R chunks like so:
+## Example Left-Censored Data Plotting
 
-```{r cars}
-summary(cars)
+The `threshold` and `proxy` aesthetics can be used to dynamically apply substitution
+for laboratory "non-detect" results from a column in the dataframe. In this example, 
+column `Numeric_Results` has non-detect results as `NA`. These are substituted based on values in `MDL`.
+
+```{r example_non_detect}
+library(ggsuppress)
+library(ggplot2)
+
+# Using the built-in groundwater dataset
+ggplot(groundwater, aes(x = Sample_Date, y = Numeric_Result, color = Parameter)) +
+  geom_line_suppressed(aes(threshold = MDL, proxy = MDL/2), suppress_na = TRUE) +
+  geom_point_suppressed(aes(threshold = MDL, proxy = MDL/2), suppress_na = TRUE, size = 3, fill = '#fff') +
+  scale_shape_suppress(values = c(19, 21), labels = c('Detected', 'Non-detect (1/2MDL)')) +
+  scale_color_manual(values = c('navy', 'skyblue', '#ed7000')) +
+  theme_minimal() +
+  labs(title = "Groundwater Results through Time", x = "Date", y = "Concentration (mg/L)")
+
+
+
+
+
 ```
-
-You'll still need to render `README.Rmd` regularly, to keep `README.md` up-to-date. `devtools::build_readme()` is handy for this.
-
-You can also embed plots, for example:
-
-```{r pressure, echo = FALSE}
-plot(pressure)
-```
-
-In that case, don't forget to commit and push the resulting figure files, so they display on GitHub and CRAN.

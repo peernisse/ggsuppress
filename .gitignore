@@ -53,3 +53,5 @@ po/*~
 rsconnect/
 docs
 inst/doc
+
+/.quarto/
