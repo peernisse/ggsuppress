@@ -20,5 +20,6 @@ Suggests:
     rmarkdown,
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
-URL: https://peernisse.github.io/ggsuppress/
+URL: https://peernisse.github.io/ggsuppress/, https://github.com/peernisse/ggsuppress
 VignetteBuilder: knitr
+BugReports: https://github.com/peernisse/ggsuppress/issues
