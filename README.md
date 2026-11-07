@@ -9,6 +9,9 @@
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 [![Pkg
 Version](https://img.shields.io/badge/Pkg%20Version-0.0.1.0-blue.svg)](https://github.com/peernisse/ggsuppress/)
+[![R-CMD-check](https://github.com/peernisse/ggsuppress/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/peernisse/ggsuppress/actions/workflows/R-CMD-check.yaml)
+[![Codecov test
+coverage](https://codecov.io/gh/peernisse/ggsuppress/graph/badge.svg)](https://app.codecov.io/gh/peernisse/ggsuppress)
 <!-- badges: end -->
 
 The goal of `{ggsuppress}` is to provide a seamless way to apply
