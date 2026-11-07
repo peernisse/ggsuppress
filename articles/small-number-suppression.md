@@ -4,8 +4,8 @@
 
 In public health informatics, it is often necessary to employ
 small-number suppression to protect patient privacy and prevent the
-misinterpretation of unstable rates. By default, the Utah DHHS
-suppresses case counts less than 11.
+misinterpretation of unstable rates. A common health data reporting
+threshold may suppress case counts less than 11, for example.
 
 The [ggsuppress](https://peernisse.github.io/ggsuppress/) package
 provides custom `ggplot2` geometries to automatically apply these
