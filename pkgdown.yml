@@ -4,7 +4,7 @@ pkgdown_sha: ~
 articles:
   left-censored-data: left-censored-data.html
   small-number-suppression: small-number-suppression.html
-last_built: 2026-11-07T02:29Z
+last_built: 2026-11-07T03:01Z
 urls:
   reference: https://peernisse.github.io/ggsuppress/reference
   article: https://peernisse.github.io/ggsuppress/articles

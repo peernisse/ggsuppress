@@ -7,6 +7,9 @@
 
 ## Citation
 
+Source:
+[`DESCRIPTION`](https://github.com/peernisse/ggsuppress/blob/main/DESCRIPTION)
+
 EerNisse P (2026). *ggsuppress: Add Data Censoring to ggplot2 Plots*. R
 package version 0.0.0.9000, <https://peernisse.github.io/ggsuppress/>.
 
