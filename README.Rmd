@@ -74,3 +74,27 @@ ggplot(groundwater, aes(x = Sample_Date, y = Numeric_Result, color = Parameter))
 
 
 ```
+
+
+## Example Column Chart Small Number Suppression
+
+Column charts with samll number suppression can be achieved with the `geom_col_suppressed()`
+with the data status represented by the column fill alpha value. 
+
+```{r example_columns}
+
+ggplot(overdoses, aes(x = month_date, y = count, fill = county)) +
+  geom_col_suppressed(position = 'dodge', proxy_value = 1) +
+  scale_alpha_suppress() +
+  theme_minimal() +
+  labs(title = "Monthly Overdoses by County", x = "Date", y = "Count")
+
+
+
+
+
+
+
+
+
+```
