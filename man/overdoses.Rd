@@ -3,11 +3,11 @@
 \docType{data}
 \name{overdoses}
 \alias{overdoses}
-\title{Monthly Overdoses in Utah and Salt Lake Counties}
+\title{Monthly Overdoses in Two Counties}
 \format{
 A data frame with 40 rows and 3 variables:
 \describe{
-\item{county}{Name of the county, either Salt Lake or Utah}
+\item{county}{Name of the county}
 \item{month_date}{Date object representing the first day of the reporting month}
 \item{count}{Integer representing the number of reported cases}
 }

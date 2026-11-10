@@ -24,6 +24,29 @@ test_that("geom_point_suppressed applies default threshold and proxy", {
   expect_equal(plot_data$y, c(0, 15, 0))
 })
 
+test_that('scale_shape_suppress defaults work', {
+
+  p <- ggplot(overdoses, aes(x = month_date, y = count, color = county)) +
+    geom_point_suppressed() +
+    scale_shape_suppress()
+ 
+  lp <- as.list(p)
+  expect_equal(lp$scales$scales[[1]]$name, 'Data Status')
+  expect_equal(lp$scales$scales[[1]]$labels[['FALSE']], 'Reliable')
+  expect_equal(lp$scales$scales[[1]]$labels[['TRUE']], 'Suppressed (<11)')
+
+})
+
+test_that('geom_line_suppressed works', {
+  p <- ggplot(overdoses, aes(x = month_date, y = count, color = county)) +
+    geom_line_suppressed(proxy_value = 2)
+  plot_data <- layer_data(p)
+  expect_equal(
+    length(plot_data$y < 11),
+    length(plot_data$is_suppressed == TRUE)
+  )
+
+})
 
 # Test 2: Custom threshold and custom proxy value
 test_that("geom_col_suppressed respects custom threshold and proxy parameters", {
