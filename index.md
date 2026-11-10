@@ -12,7 +12,7 @@ You can install the development version of ggsuppress like so:
 
 ``` r
 
-# devtools::install_github("peernisse/ggsuppress")
+devtools::install_github("peernisse/ggsuppress")
 ```
 
 ## Example Small Number Suppression
@@ -61,3 +61,21 @@ ggplot(groundwater, aes(x = Sample_Date, y = Numeric_Result, color = Parameter))
 ```
 
 ![](reference/figures/README-example_non_detect-1.png)
+
+## Example Column Chart Small Number Suppression
+
+Column charts with samll number suppression can be achieved with the
+[`geom_col_suppressed()`](https://peernisse.github.io/ggsuppress/reference/geom_suppress.md)
+with the data status represented by the column fill alpha value.
+
+``` r
+
+
+ggplot(overdoses, aes(x = month_date, y = count, fill = county)) +
+  geom_col_suppressed(position = 'dodge', proxy_value = 1) +
+  scale_alpha_suppress() +
+  theme_minimal() +
+  labs(title = "Monthly Overdoses by County", x = "Date", y = "Count")
+```
+
+![](reference/figures/README-example_columns-1.png)

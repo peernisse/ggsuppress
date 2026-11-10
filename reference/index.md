@@ -9,7 +9,7 @@
 - [`groundwater`](https://peernisse.github.io/ggsuppress/reference/groundwater.md)
   : Mock Groundwater Monitoring Dataset
 - [`overdoses`](https://peernisse.github.io/ggsuppress/reference/overdoses.md)
-  : Monthly Overdoses in Utah and Salt Lake Counties
+  : Monthly Overdoses in Two Counties
 - [`scale_shape_suppress()`](https://peernisse.github.io/ggsuppress/reference/scale_suppress.md)
   [`scale_alpha_suppress()`](https://peernisse.github.io/ggsuppress/reference/scale_suppress.md)
   [`scale_color_suppress()`](https://peernisse.github.io/ggsuppress/reference/scale_suppress.md)

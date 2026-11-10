@@ -1,4 +1,4 @@
-# Monthly Overdoses in Utah and Salt Lake Counties
+# Monthly Overdoses in Two Counties
 
 A dataset demonstrating monthly overdose counts to be used for testing
 and visualizing small-number suppression in public health reporting.
@@ -15,7 +15,7 @@ A data frame with 40 rows and 3 variables:
 
 - county:
 
-  Name of the county, either Salt Lake or Utah
+  Name of the county
 
 - month_date:
 

@@ -126,7 +126,7 @@ to make the suppressed bars semi-transparent.
 ggplot(overdoses, aes(x = month_date, y = count, fill = county)) +
   
   # position = "dodge" places the county bars side-by-side
-  geom_col_suppressed(position = "dodge", color = "black") + 
+  geom_col_suppressed(position = "dodge") + 
   
   scale_fill_manual(
     name = "County",
