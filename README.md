@@ -24,7 +24,7 @@ automatically plotted at a proxy value and given distinct symbology.
 You can install the development version of ggsuppress like so:
 
 ``` r
-devtools::install_github("peernisse/ggsuppress")
+# devtools::install_github("peernisse/ggsuppress")
 ```
 
 ## Example Small Number Suppression
