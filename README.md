@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# ggsuppress
+# ggsuppress <a href="https://peernisse.github.io/ggsuppress/"><img src="man/figures/logo.png" align="right" height="139" alt="ggsuppress website" /></a>
 
 <!-- badges: start -->
 
@@ -24,7 +24,7 @@ automatically plotted at a proxy value and given distinct symbology.
 You can install the development version of ggsuppress like so:
 
 ``` r
-# devtools::install_github("peernisse/ggsuppress")
+devtools::install_github("peernisse/ggsuppress")
 ```
 
 ## Example Small Number Suppression
