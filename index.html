@@ -12,6 +12,7 @@
 <script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Add Data Censoring to ggplot2 Plots">
 <meta name="description" content="ggplot2 extensions for stat and geom to plot censored values. Use in context of public health small-number suppression or for left-censored laboratory data.">
 <meta property="og:description" content="ggplot2 extensions for stat and geom to plot censored values. Use in context of public health small-number suppression or for left-censored laboratory data.">
+<meta property="og:image" content="https://peernisse.github.io/ggsuppress/logo.png">
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
@@ -52,8 +53,10 @@
 </nav><div class="container template-home">
 <div class="row">
   <main id="main" class="col-md-9"><div class="section level1">
-<div class="page-header"><h1 id="ggsuppress">ggsuppress<a class="anchor" aria-label="anchor" href="#ggsuppress"></a>
-</h1></div>
+<div class="page-header">
+<img src="logo.png" class="logo" alt=""><h1 id="ggsuppress">ggsuppress<a class="anchor" aria-label="anchor" href="#ggsuppress"></a>
+</h1>
+</div>
 <!-- badges: start -->
 
 <p>The goal of <a href="https://peernisse.github.io/ggsuppress/">ggsuppress</a> is to provide a seamless way to apply small-number suppression to public health data visualizations in ggplot2. Values below a specified threshold (default &lt; 11) are automatically plotted at a proxy value and given distinct symbology.</p>
@@ -62,7 +65,7 @@
 </h2>
 <p>You can install the development version of ggsuppress like so:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"peernisse/ggsuppress"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># devtools::install_github("peernisse/ggsuppress")</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="example-small-number-suppression">Example Small Number Suppression<a class="anchor" aria-label="anchor" href="#example-small-number-suppression"></a>
