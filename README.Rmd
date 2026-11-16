@@ -13,7 +13,8 @@ knitr::opts_chunk$set(
 )
 ```
 
-# ggsuppress
+# ggsuppress <a href="https://peernisse.github.io/ggsuppress/"><img src="man/figures/logo.png" align="right" height="139" alt="ggsuppress website" /></a>
+
 
 <!-- badges: start -->
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
